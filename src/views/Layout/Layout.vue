@@ -3,7 +3,7 @@
     <!--左侧导航区域-->
     <NavMenu class="menu" :isCollapse="isCollapse"/>
     <!--右侧内容区域-->
-    <Content class="content" :class="{isActive:isCollapse}" @changeCollapse="changeCollapse" :isCollapse="isCollapse"/>
+    <Content class="content" @changeCollapse="changeCollapse" :isCollapse="isCollapse"/>
   </div>
 </template>
 
@@ -32,20 +32,13 @@ export default {
 <style scoped lang="less">
 .layout {
   display: flex;
+  height: 100vh;
+  overflow-y: hidden;
   .menu {
-    //width: 200px;
-    //min-height: 500px;
     background: #1b3554;
-    position: fixed;
-    top: 0;
-    bottom: 0;
   }
   .content {
     flex: 1;
-    margin-left: 200px;
-  }
-  .isActive {
-    margin-left: 64px;
   }
 }
 </style>

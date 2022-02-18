@@ -13,15 +13,15 @@
         border
         style="width: 100%">
         <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column prop="name" label="商品ID" width="100"></el-table-column>
-        <el-table-column prop="name" label="商品名称" width="100"></el-table-column>
-        <el-table-column prop="name" label="商品价格" width="100"></el-table-column>
-        <el-table-column prop="name" label="商品数量" width="100"></el-table-column>
-        <el-table-column prop="name" label="规格类目" width="100"></el-table-column>
-        <el-table-column prop="name" label="商品图片"></el-table-column>
-        <el-table-column prop="name" label="商品卖点"></el-table-column>
-        <el-table-column prop="name" label="商品描述"></el-table-column>
-        <el-table-column prop="name" label="操作" width="180">
+        <el-table-column prop="id" label="商品ID" width="100"></el-table-column>
+        <el-table-column prop="title" label="商品名称" width="100" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="price" label="商品价格" width="100"></el-table-column>
+        <el-table-column prop="num" label="商品数量" width="100"></el-table-column>
+        <el-table-column prop="category" label="规格类目" width="100"></el-table-column>
+        <el-table-column prop="image" label="商品图片" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="sellPoint" label="商品卖点" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="descs" label="商品描述" show-overflow-tooltip></el-table-column>
+        <el-table-column label="操作" width="180">
           <template slot-scope="scope">
             <el-button
               size="mini"
@@ -35,7 +35,9 @@
       </el-table>
     </div>
     <!--3. 分页-->
+<!--    <div style="height: 120px">-->
 
+<!--    </div>-->
   </div>
 </template>
 
@@ -63,6 +65,15 @@ export default {
     handleDelete (index, row) {
       console.log('删除', index, row)
     }
+  },
+  created () {
+    this.$api.getGoodsList({ page: 1 }).then(res => {
+      if (res.data.status === 200) {
+        this.tableData = res.data.data
+      } else {
+        this.tableData = []
+      }
+    })
   }
 }
 </script>

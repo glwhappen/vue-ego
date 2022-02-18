@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu
-      default-active="/"
+      :default-active="$route.path"
       class="el-menu-vertical-demo"
       background-color="#1b3554"
       text-color="#fff"
@@ -54,7 +54,7 @@ export default {
 
 <style scoped lang="less">
 .el-menu {
-  border: 0px;
+  border: 0;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;

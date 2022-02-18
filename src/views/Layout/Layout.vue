@@ -39,6 +39,7 @@ export default {
   }
   .content {
     flex: 1;
+    width: 50%; // 用来修复宽度太宽的问题，不知道为什么这样可以
   }
 }
 </style>

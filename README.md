@@ -16,7 +16,7 @@
 - [x] [P6. 06 商品列表-动态数据](https://www.bilibili.com/video/BV1j5411o7xH?p=6)
   - 实现后台接口 express + Mysql
   - 简单的展示数据
-- [ ] [P7. 07 商品列表-分页实现](https://www.bilibili.com/video/BV1j5411o7xH?p=7)
+- [x] [P7. 07 商品列表-分页实现](https://www.bilibili.com/video/BV1j5411o7xH?p=7)
 - [ ] [P8. 01 商品管理-搜索](https://www.bilibili.com/video/BV1j5411o7xH?p=8)
 - [ ] [P9. 02 商品-页面添加](https://www.bilibili.com/video/BV1j5411o7xH?p=9)
 - [ ] [P10. 03 商品-弹框添加](https://www.bilibili.com/video/BV1j5411o7xH?p=10)

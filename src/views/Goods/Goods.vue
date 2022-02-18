@@ -11,6 +11,7 @@
       <el-table
         :data="tableData"
         border
+        v-loading="loading"
         style="width: 100%">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="id" label="商品ID" width="100"></el-table-column>
@@ -35,15 +36,15 @@
       </el-table>
     </div>
     <!--3. 分页-->
-<!--    <div style="height: 120px">-->
-
-<!--    </div>-->
+    <MyPagination :total="total" :pageSize="pageSize" @changePage="changePage"></MyPagination>
   </div>
 </template>
 
 <script>
+import MyPagination from '../../components/MyPagination'
 export default {
   name: 'Goods',
+  components: { MyPagination },
   data () {
     return {
       input: '',
@@ -55,7 +56,10 @@ export default {
         date: '2016-05-04',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1517 弄'
-      }]
+      }],
+      total: 0,
+      pageSize: 1,
+      loading: false
     }
   },
   methods: {
@@ -64,16 +68,28 @@ export default {
     },
     handleDelete (index, row) {
       console.log('删除', index, row)
+    },
+    getGoodsList (page) {
+      this.loading = true
+      this.$api.getGoodsList({ page }).then(res => {
+        this.loading = false
+        if (res.data.status === 200) {
+          this.tableData = res.data.data
+          this.total = res.data.total
+          this.pageSize = res.data.pageSize
+        } else {
+          this.tableData = []
+          this.total = 0
+          this.pageSize = 1
+        }
+      })
+    },
+    changePage (page) {
+      this.getGoodsList(page)
     }
   },
   created () {
-    this.$api.getGoodsList({ page: 1 }).then(res => {
-      if (res.data.status === 200) {
-        this.tableData = res.data.data
-      } else {
-        this.tableData = []
-      }
-    })
+    this.getGoodsList(1)
   }
 }
 </script>

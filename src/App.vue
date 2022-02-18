@@ -1,15 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>
-      <p>
-        If Element is successfully added to this project, you'll see an
-        <code v-text="'<el-button>'"></code>
-        below
-      </p>
-      <el-button>el-button <i class="iconfont icon-add"></i></el-button>
-    </div>
-
+    <router-view></router-view>
   </div>
 </template>
 
@@ -26,4 +17,7 @@ export default {
 <style>
 /*引入iconfont*/
 @import url('https://at.alicdn.com/t/font_2448847_4xsojqvt7qt.css');
+body {
+  background: #f5f5f5;
+}
 </style>

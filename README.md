@@ -11,7 +11,7 @@
 - [x] [P3. 03 首页-路由界面基础搭建](https://www.bilibili.com/video/BV1j5411o7xH?p=3)
   - 左边导航栏已经实现了，用的element里面的navmenu
   - 并且创建了大量的页面
-- [ ] [P4. 04 首页-导航折叠](https://www.bilibili.com/video/BV1j5411o7xH?p=4)
+- [x] [P4. 04 首页-导航折叠](https://www.bilibili.com/video/BV1j5411o7xH?p=4)
 - [ ] [P5. 05 商品列表-静态布局](https://www.bilibili.com/video/BV1j5411o7xH?p=5)
 - [ ] [P6. 06 商品列表-动态数据](https://www.bilibili.com/video/BV1j5411o7xH?p=6)
 - [ ] [P7. 07 商品列表-分页实现](https://www.bilibili.com/video/BV1j5411o7xH?p=7)

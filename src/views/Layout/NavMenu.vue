@@ -3,11 +3,15 @@
     <el-menu
       default-active="/"
       class="el-menu-vertical-demo"
-      background-color="#545c64"
+      background-color="#1b3554"
       text-color="#fff"
       router
-      :collapse="false"
+      :collapse="isCollapse"
       active-text-color="#ffd04b">
+      <el-menu-item>
+        <i class="el-icon-menu"></i>
+        <span slot="title">后台管理系统</span>
+      </el-menu-item>
       <el-menu-item index="/">
         <i class="el-icon-menu"></i>
         <span slot="title">首页</span>
@@ -38,12 +42,22 @@
 
 <script>
 export default {
-  name: 'NavMenu'
+  name: 'NavMenu',
+  props: ['isCollapse'],
+  data () {
+    return {
+      // isCollapse: false
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .el-menu {
   border: 0px;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 500px;
 }
 </style>

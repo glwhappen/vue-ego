@@ -7,7 +7,10 @@
       顶部区域
     </div>
     <!--内容区域 路由出口-->
-    <router-view class="view" />
+    <div class="view">
+      <router-view />
+    </div>
+
   </div>
 </template>
 

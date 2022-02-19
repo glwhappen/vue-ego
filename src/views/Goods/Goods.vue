@@ -40,7 +40,7 @@
     <MyPagination :total="total" :pageSize="pageSize" @changePage="changePage"></MyPagination>
     <!--弹窗-->
 <!--    <AddGoodsDialog :dialogVisible="dialogVisible" @handleClose="handleClose" />-->
-    <AddGoodsDialog ref="dialog" />
+    <AddGoodsDialog ref="dialog" :currentPage="currentPage" />
 
   </div>
 </template>
@@ -65,6 +65,7 @@ export default {
       }],
       total: 0,
       pageSize: 8,
+      currentPage: 1, // 当前页码
       loading: false,
       type: 1, // 1-商品列表； 2-搜索
       list: []
@@ -91,12 +92,13 @@ export default {
       const value = this.input
       if (!value) {
         this.getGoodsList(1)
+        this.type = 1
         return
       }
       this.$api.getSearch({
         search: value
       }).then(res => {
-        console.log(res)
+        this.currentPage = 1
         if (res.status === 200) {
           // this.tableData = res.result
           this.list = res.result
@@ -129,6 +131,7 @@ export default {
       })
     },
     changePage (page) {
+      this.currentPage = page
       if (this.type === 1) {
         this.getGoodsList(page)
       } else {

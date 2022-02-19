@@ -5,6 +5,7 @@
       <el-input @change="searchInput" v-model="input" placeholder="请输入内容"></el-input>
       <el-button type="primary">查询</el-button>
       <el-button type="primary" @click="toAddGoods">页面添加</el-button>
+      <el-button type="primary" @click="addGoods">弹窗添加</el-button>
     </div>
     <!--2. 表格区域展示视图数据-->
     <div class="wrapper">
@@ -37,14 +38,19 @@
     </div>
     <!--3. 分页-->
     <MyPagination :total="total" :pageSize="pageSize" @changePage="changePage"></MyPagination>
+    <!--弹窗-->
+<!--    <AddGoodsDialog :dialogVisible="dialogVisible" @handleClose="handleClose" />-->
+    <AddGoodsDialog ref="dialog" />
+
   </div>
 </template>
 
 <script>
 import MyPagination from '../../components/MyPagination'
+import AddGoodsDialog from '@/views/Goods/AddGoodsDialog'
 export default {
   name: 'Goods',
-  components: { MyPagination },
+  components: { AddGoodsDialog, MyPagination },
   data () {
     return {
       input: '',
@@ -65,6 +71,13 @@ export default {
     }
   },
   methods: {
+    addGoods() {
+      // this.dialogVisible = true
+      this.$refs.dialog.dialogVisible = true
+    },
+    handleClose() {
+      this.dialogVisible = false
+    },
     handleEdit (index, row) {
       console.log('编辑', index, row)
     },

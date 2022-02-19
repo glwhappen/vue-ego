@@ -21,7 +21,8 @@
   - 实现了商品的搜索，并且还前端模拟了分页
 - [x] [P9. 02 商品-页面添加](https://www.bilibili.com/video/BV1j5411o7xH?p=9)
   - 新增了一个添加商品的页面
-- [ ] [P10. 03 商品-弹框添加](https://www.bilibili.com/video/BV1j5411o7xH?p=10)
+- [x] [P10. 03 商品-弹框添加](https://www.bilibili.com/video/BV1j5411o7xH?p=10)
+  - 新增了一个添加商品的页面-dialog方法实现
 - [ ] [P11. 04 商品-分页功能bug](https://www.bilibili.com/video/BV1j5411o7xH?p=11)
 - [ ] [P12. 05 类目选择](https://www.bilibili.com/video/BV1j5411o7xH?p=12)
 - [ ] [P13. 06 类目选择实现](https://www.bilibili.com/video/BV1j5411o7xH?p=13)

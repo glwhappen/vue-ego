@@ -1,15 +1,14 @@
 <template>
-  <div class="add-goods">
-    <!--面包屑-->
-    <div class="title">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{ path: '/goods' }">商品管理</el-breadcrumb-item>
-        <el-breadcrumb-item>添加商品</el-breadcrumb-item>
+  <!--
+    title 弹窗标题
+    :visible.sync="dialogVisible" 控制显示隐藏
+  -->
+  <el-dialog
+    title="添加商品"
+    :visible.sync="dialogVisible"
+    width="70%"
+    :before-close="handleClose">
 
-      </el-breadcrumb>
-    </div>
-    <!--数据-->
     <div class="myform">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 
@@ -61,15 +60,22 @@
         </el-form-item>
       </el-form>
     </div>
-  </div>
+
+    <!--弹窗底部区域-->
+    <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+  </el-dialog>
 </template>
 
 <script>
-
 export default {
-  name: 'AddGoods',
-  data () {
+  name: 'AddGoodsDialog',
+  // props: ['dialogVisible'],
+  data() {
     return {
+      dialogVisible: false,
       ruleForm: {
         title: '', // 商品名称
         price: 0, // 商品价格
@@ -96,6 +102,9 @@ export default {
     }
   },
   methods: {
+    handleClose() {
+      this.dialogVisible = false
+    },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -113,23 +122,8 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-.add-goods {
-  margin: 20px;
-  .title {
-    padding: 10px;
-    background: #fff;
-    border: 1px solid #eee;
-    margin-bottom: 20px;
-  }
-  .myform {
-    background: white;
-    padding: 20px;
-    padding-right: 40px;
-  }
-  .line {
-    text-align: center;
-  }
+<style scoped>
+.line {
+  text-align: center;
 }
-
 </style>

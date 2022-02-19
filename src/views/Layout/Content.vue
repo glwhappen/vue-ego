@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <div class="header">
       <i v-show="!isCollapse" @click="changeMenu" class="iconfont icon-right-indent collapse"></i>
       <i v-show="isCollapse" @click="changeMenu" class="iconfont icon-left-indent collapse"></i>
@@ -28,6 +28,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.content {
+  display: flex;
+  flex-direction: column;
   .header {
     height: 50px;
     line-height: 50px;
@@ -38,10 +41,12 @@ export default {
     }
   }
   .view {
-    height: 100%;
+    flex: 1;
     overflow-y: auto;
   }
   .collapse {
     cursor: pointer;
   }
+}
+
 </style>

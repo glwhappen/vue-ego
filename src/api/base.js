@@ -5,7 +5,8 @@
 
 const base = {
   baseURL: 'http://localhost:8080',
-  goodsList: '/api/projectList' // 商品列表
+  goodsList: '/api/projectList', // 商品列表
+  search: '/api/search'
 }
 
 export default base

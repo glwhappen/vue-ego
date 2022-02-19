@@ -2,7 +2,7 @@
   <div class="goods">
     <!--1. 搜索区域-->
     <div class="header">
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
+      <el-input @change="searchInput" v-model="input" placeholder="请输入内容"></el-input>
       <el-button type="primary">查询</el-button>
       <el-button type="primary">添加</el-button>
     </div>
@@ -58,8 +58,10 @@ export default {
         address: '上海市普陀区金沙江路 1517 弄'
       }],
       total: 0,
-      pageSize: 1,
-      loading: false
+      pageSize: 8,
+      loading: false,
+      type: 1, // 1-商品列表； 2-搜索
+      list: []
     }
   },
   methods: {
@@ -69,14 +71,43 @@ export default {
     handleDelete (index, row) {
       console.log('删除', index, row)
     },
+    /**
+     * 查询数据
+     */
+    searchInput () {
+      const value = this.input
+      if (!value) {
+        this.getGoodsList(1)
+        return
+      }
+      this.$api.getSearch({
+        search: value
+      }).then(res => {
+        console.log(res)
+        if (res.status === 200) {
+          // this.tableData = res.result
+          this.list = res.result
+          this.total = res.result.length
+          // this.pageSize = this.pageSize
+          this.tableData = res.result.slice(0, this.pageSize)
+          this.type = 2
+        } else {
+          this.tableData = []
+        }
+      })
+    },
+    /**
+     * 获取商品列表
+     * @param page
+     */
     getGoodsList (page) {
       this.loading = true
       this.$api.getGoodsList({ page }).then(res => {
         this.loading = false
-        if (res.data.status === 200) {
-          this.tableData = res.data.data
-          this.total = res.data.total
-          this.pageSize = res.data.pageSize
+        if (res.status === 200) {
+          this.tableData = res.data
+          this.total = res.total
+          this.pageSize = res.pageSize
         } else {
           this.tableData = []
           this.total = 0
@@ -85,7 +116,12 @@ export default {
       })
     },
     changePage (page) {
-      this.getGoodsList(page)
+      if (this.type === 1) {
+        this.getGoodsList(page)
+      } else {
+        console.log('处理分页')
+        this.tableData = this.list.slice((page - 1) * this.pageSize, page * this.pageSize)
+      }
     }
   },
   created () {

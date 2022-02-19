@@ -24,7 +24,7 @@
 - [x] [P10. 03 商品-弹框添加](https://www.bilibili.com/video/BV1j5411o7xH?p=10)
   - 新增了一个添加商品的页面-dialog方法实现
 - [x] [P11. 04 商品-分页功能bug](https://www.bilibili.com/video/BV1j5411o7xH?p=11)
-- [ ] [P12. 05 类目选择](https://www.bilibili.com/video/BV1j5411o7xH?p=12)
+- [x] [P12. 05 类目选择](https://www.bilibili.com/video/BV1j5411o7xH?p=12)
 - [ ] [P13. 06 类目选择实现](https://www.bilibili.com/video/BV1j5411o7xH?p=13)
 - [ ] [P14. 01 项目补充说明](https://www.bilibili.com/video/BV1j5411o7xH?p=14)
 - [ ] [P15. 02 上传图片实现](https://www.bilibili.com/video/BV1j5411o7xH?p=15)

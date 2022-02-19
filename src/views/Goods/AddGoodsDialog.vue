@@ -13,7 +13,7 @@
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 
         <el-form-item label="类目选择" prop="category">
-          <el-button type="primary">类目选择</el-button>
+          <el-button type="primary" @click="dialogCategoryVisible = true">类目选择</el-button>
         </el-form-item>
 
         <el-form-item label="商品名称" prop="title">
@@ -63,19 +63,36 @@
 
     <!--弹窗底部区域-->
     <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      <el-button @click="dialogVisible = false">取 消</el-button>
+      <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    </span>
+    <!--1. 内弹框 - 类目选择-->
+    <el-dialog
+      width="50%"
+      title="类目选择"
+      :visible.sync="dialogCategoryVisible"
+      append-to-body>
+      <CategoryTree/>
+      <!--弹窗底部区域-->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogCategoryVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogCategoryVisible = false">确 定</el-button>
       </span>
+    </el-dialog>
+
   </el-dialog>
 </template>
 
 <script>
+import CategoryTree from '@/views/Goods/CategoryTree'
 export default {
   name: 'AddGoodsDialog',
+  components: { CategoryTree },
   // props: ['dialogVisible'],
   data() {
     return {
       dialogVisible: false,
+      dialogCategoryVisible: false,
       ruleForm: {
         title: '', // 商品名称
         price: 0, // 商品价格

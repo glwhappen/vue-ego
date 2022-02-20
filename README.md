@@ -39,7 +39,8 @@
 - [x] [P19. 06 编辑商品](https://www.bilibili.com/video/BV1j5411o7xH?p=19)
 - [x] [P20. 01 Vue-i8n国际化](https://www.bilibili.com/video/BV1j5411o7xH?p=20)
   - 如果跟着视频来，必须这样安装`npm install vue-i18n@8.26.7`要不会报错
-- [ ] [P21. 02 Element-国际化](https://www.bilibili.com/video/BV1j5411o7xH?p=21)
+- [x] [P21. 02 Element-国际化](https://www.bilibili.com/video/BV1j5411o7xH?p=21)
+  - 视频里的方法最后一步报错，参考了这个人的教程就可以了 [vue+element+vue-i18n@8.x 国际化中英文切换](https://blog.csdn.net/songhsia/article/details/104800966)
 - [ ] [P22. 03 登录布局](https://www.bilibili.com/video/BV1j5411o7xH?p=22)
 - [ ] [P23. 04 登录-功能实现-数据持久化-vuex](https://www.bilibili.com/video/BV1j5411o7xH?p=23)
 - [ ] [P24. 05 Echarts使用](https://www.bilibili.com/video/BV1j5411o7xH?p=24)

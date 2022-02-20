@@ -83,7 +83,30 @@ export default {
       console.log('编辑', index, row)
     },
     handleDelete (index, row) {
-      console.log('删除', index, row)
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // 请求接口
+        console.log('删除', index, row)
+        this.$api.deleteGoods({ id: row.id }).then(res => {
+          if(res.status === 200) {
+            this.getGoodsList(this.currentPage)
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            })
+          } else {
+            this.$message.error('删除错误')
+          }
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     },
     /**
      * 查询数据

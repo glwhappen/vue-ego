@@ -32,7 +32,8 @@
   - 没实现功能，讲了一些基本的前后台知识
 - [x] [P15. 02 上传图片实现](https://www.bilibili.com/video/BV1j5411o7xH?p=15)
   - 实现了上传图片的后台和前台
-- [ ] [P16. 03 富文本编译器](https://www.bilibili.com/video/BV1j5411o7xH?p=16)
+- [x] [P16. 03 富文本编译器](https://www.bilibili.com/video/BV1j5411o7xH?p=16)
+  - 使用了wangEditor
 - [ ] [P17. 04 商品添加-清空表单](https://www.bilibili.com/video/BV1j5411o7xH?p=17)
 - [ ] [P18. 05 删除商品](https://www.bilibili.com/video/BV1j5411o7xH?p=18)
 - [ ] [P19. 06 编辑商品](https://www.bilibili.com/video/BV1j5411o7xH?p=19)

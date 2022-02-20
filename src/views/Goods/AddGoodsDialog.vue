@@ -57,20 +57,16 @@
         </el-form-item>
 
         <el-form-item label="商品描述" prop="descs">
-          <el-input type="textarea" v-model="ruleForm.descs"></el-input>
+          <WangEditor @sendEditor="sendEditor" />
         </el-form-item>
 
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">确定</el-button>
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
-        </el-form-item>
       </el-form>
     </div>
 
     <!--弹窗底部区域-->
     <span slot="footer" class="dialog-footer">
       <el-button @click="dialogVisible = false">取 消</el-button>
-      <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      <el-button type="primary" @click="submitForm">确 定</el-button>
     </span>
     <!--1. 内弹框 - 类目选择-->
     <el-dialog
@@ -82,7 +78,7 @@
       <!--弹窗底部区域-->
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogCategoryVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogUploadImageVisible = false">确 定</el-button>
+        <el-button type="primary" @click="showTreeData">确 定</el-button>
       </span>
     </el-dialog>
     <!--2. 内弹窗 - 上传图片-->
@@ -104,9 +100,10 @@
 <script>
 import CategoryTree from '@/views/Goods/CategoryTree'
 import UploadImage from '@/views/Goods/UploadImage'
+import WangEditor from '@/views/Goods/WangEditor'
 export default {
   name: 'AddGoodsDialog',
-  components: { UploadImage, CategoryTree },
+  components: { WangEditor, UploadImage, CategoryTree },
   // props: ['dialogVisible'],
   data() {
     return {
@@ -117,8 +114,8 @@ export default {
       imgUrl: '',
       ruleForm: {
         title: '', // 商品名称
-        price: 0, // 商品价格
-        num: 0,
+        price: null, // 商品价格
+        num: null,
         sellPoint: '',
         image: '',
         descs: '',
@@ -141,6 +138,14 @@ export default {
     }
   },
   methods: {
+    /**
+     * 接收wangEditor传过来的html
+     * @param html html内容
+     */
+    sendEditor(html) {
+      // console.log('内容', html)
+      this.ruleForm.descs = html
+    },
     /**
      * 显示图片
      */
@@ -174,18 +179,21 @@ export default {
     handleClose() {
       this.dialogVisible = false
     },
-    submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
+    submitForm () {
+      this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           alert('submit!')
+          console.log('提交内容', this.ruleForm)
+          this.dialogVisible = false
+          this.$message.success('提交成功')
         } else {
-          console.log('error submit!!')
+          this.$message.error('数据校验失败')
           return false
         }
       })
     },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
+    resetForm () {
+      this.$refs.ruleForm.resetFields()
     }
   }
 }

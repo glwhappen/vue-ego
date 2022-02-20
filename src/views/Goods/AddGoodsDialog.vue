@@ -4,7 +4,7 @@
     :visible.sync="dialogVisible" 控制显示隐藏
   -->
   <el-dialog
-    title="添加商品"
+    :title="title"
     :visible.sync="dialogVisible"
     width="70%"
     :before-close="resetForm">
@@ -104,7 +104,28 @@ import WangEditor from '@/views/Goods/WangEditor'
 export default {
   name: 'AddGoodsDialog',
   components: { WangEditor, UploadImage, CategoryTree },
-  // props: ['dialogVisible'],
+  props: {
+    title: {
+      type: String,
+      default: '添加商品'
+    },
+    formData: { // 默认表单数据
+      type: Object,
+      default: function() {
+        return {}
+      }
+    }
+  },
+  // 监听器 读不到vue的this 在created前
+  watch: {
+    formData(val) {
+      this.ruleForm = val
+      // 设置富文本编译器的内容
+      this.$nextTick(() => {
+        this.$refs.wangEditor.editor.txt.html(val.descs)
+      })
+    }
+  },
   data() {
     return {
       dialogVisible: false,
@@ -113,6 +134,7 @@ export default {
       treeData: {}, // 接受tree的数据
       imgUrl: '',
       ruleForm: {
+        id: '', // 添加的时候不需要指定
         title: '', // 商品名称
         price: null, // 商品价格
         num: null,
@@ -137,6 +159,9 @@ export default {
         ]
       }
     }
+  },
+  mounted () {
+    this.ruleForm = this.formData
   },
   methods: {
     /**
@@ -178,14 +203,29 @@ export default {
     submitForm () {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
-          console.log('提交内容', this.ruleForm)
-          this.$api.addGoods(this.ruleForm).then(res => {
-            if(res.status === 200) {
-              this.$message.success('添加成功') // 2. 提示消息
-              this.$parent.getGoodsList(1) // 3. 更新父组件的商品列表数据
-              this.resetForm()
-            }
-          })
+          if(this.title === '添加商品') {
+            this.$api.addGoods(this.ruleForm).then(res => {
+              if(res.status === 200) {
+                this.$message.success('添加商品成功！') // 2. 提示消息
+                this.$parent.getGoodsList(1) // 3. 更新父组件的商品列表数据
+                this.resetForm()
+              } else {
+                this.$message.error('添加商品失败！') // 2. 提示消息
+              }
+            })
+          } else {
+            // 编辑商品
+            console.log(this.ruleForm)
+            this.$api.editGoods(this.ruleForm).then(res => {
+              if(res.status === 200) {
+                this.$message.success('编辑商品成功！') // 2. 提示消息
+                this.$parent.getGoodsList(1) // 3. 更新父组件的商品列表数据
+                this.resetForm()
+              } else {
+                this.$message.error('修改商品失败！') // 2. 提示消息
+              }
+            })
+          }
         } else {
           this.$message.error('数据校验失败')
           return false
@@ -193,9 +233,21 @@ export default {
       })
     },
     resetForm () {
-      this.$refs.ruleForm.resetFields() // 4. 清空表单 element自带的方法
-      this.$refs.wangEditor.editor.txt.clear() // 5. 情况wangEditor内容
       this.dialogVisible = false // 1. 关闭弹窗
+      this.$refs.ruleForm.resetFields() // 4. 清空表单 element自带的方法 不能传引用
+      // this.ruleForm = {
+      //   title: '', // 商品名称
+      //   price: null, // 商品价格
+      //   num: null,
+      //   sellPoint: '',
+      //   image: '',
+      //   descs: '',
+      //   cid: '', // 类目id
+      //   category: '',
+      //   data: '', // 商品时间
+      //   time: ''
+      // }
+      this.$refs.wangEditor.editor.txt.clear() // 5. 情况wangEditor内容
     }
   }
 }

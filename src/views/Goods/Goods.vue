@@ -37,10 +37,10 @@
       </el-table>
     </div>
     <!--3. 分页-->
-    <MyPagination :total="total" :pageSize="pageSize" @changePage="changePage"></MyPagination>
+    <MyPagination :total="total" :pageSize="pageSize" @changePage="changePage" :currentPage="currentPage"></MyPagination>
     <!--弹窗-->
 <!--    <AddGoodsDialog :dialogVisible="dialogVisible" @handleClose="handleClose" />-->
-    <AddGoodsDialog ref="dialog" :currentPage="currentPage" />
+    <AddGoodsDialog ref="dialog" :title="dialogTitle" :formData="rowData" />
 
   </div>
 </template>
@@ -53,6 +53,8 @@ export default {
   components: { AddGoodsDialog, MyPagination },
   data () {
     return {
+      dialogTitle: '添加商品',
+      rowData: {},
       input: '',
       tableData: [{
         date: '2016-05-02',
@@ -75,12 +77,18 @@ export default {
     addGoods() {
       // this.dialogVisible = true
       this.$refs.dialog.dialogVisible = true
+      this.dialogTitle = '添加商品'
     },
     handleClose() {
       this.dialogVisible = false
     },
     handleEdit (index, row) {
       console.log('编辑', index, row)
+      // 1. 点击编辑按钮 显示弹窗
+      this.$refs.dialog.dialogVisible = true
+      this.dialogTitle = '编辑商品'
+      this.rowData = { ...row } // 不能传引用 必须拷贝过去才不会出问题
+      // 2. 数据回显
     },
     handleDelete (index, row) {
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {

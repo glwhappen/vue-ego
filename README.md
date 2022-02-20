@@ -36,7 +36,7 @@
   - 使用了wangEditor
 - [x] [P17. 04 商品添加-清空表单](https://www.bilibili.com/video/BV1j5411o7xH?p=17)
 - [x] [P18. 05 删除商品](https://www.bilibili.com/video/BV1j5411o7xH?p=18)
-- [ ] [P19. 06 编辑商品](https://www.bilibili.com/video/BV1j5411o7xH?p=19)
+- [x] [P19. 06 编辑商品](https://www.bilibili.com/video/BV1j5411o7xH?p=19)
 - [ ] [P20. 01 Vue-i8n国际化](https://www.bilibili.com/video/BV1j5411o7xH?p=20)
 - [ ] [P21. 02 Element-国际化](https://www.bilibili.com/video/BV1j5411o7xH?p=21)
 - [ ] [P22. 03 登录布局](https://www.bilibili.com/video/BV1j5411o7xH?p=22)

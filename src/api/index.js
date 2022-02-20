@@ -56,6 +56,9 @@ const api = {
   },
   deleteGoods(params) {
     return request.get(base.deleteGoods, { params })
+  },
+  editGoods(params) {
+    return request.get(base.editGoods, { params })
   }
 }
 

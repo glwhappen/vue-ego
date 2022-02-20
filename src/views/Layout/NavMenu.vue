@@ -10,31 +10,31 @@
       active-text-color="#ffd04b">
       <el-menu-item>
         <i class="el-icon-menu"></i>
-        <span slot="title">后台管理系统</span>
+        <span slot="title">{{ $t("global.title") }}</span>
       </el-menu-item>
       <el-menu-item index="/">
         <i class="el-icon-menu"></i>
-        <span slot="title">首页</span>
+        <span slot="title">{{ $t("navMenu.home") }}</span>
       </el-menu-item>
       <el-menu-item index="/goods">
         <i class="el-icon-document"></i>
-        <span slot="title">商品管理</span>
+        <span slot="title">{{ $t("navMenu.goods") }}</span>
       </el-menu-item>
       <el-menu-item index="/params">
         <i class="el-icon-setting"></i>
-        <span slot="title">规格参数</span>
+        <span slot="title">{{ $t("navMenu.params") }}</span>
       </el-menu-item>
       <el-menu-item index="/advert">
         <i class="el-icon-setting"></i>
-        <span slot="title">广告分类</span>
+        <span slot="title">{{ $t("navMenu.advert") }}</span>
       </el-menu-item>
       <el-submenu index="/order">
         <template slot="title">
           <i class="el-icon-location"></i>
-          <span>订单管理</span>
+          <span>{{ $t("navMenu.order") }}</span>
         </template>
-          <el-menu-item index="/order/order-list">订单列表</el-menu-item>
-          <el-menu-item index="/order/order-back">退货管理</el-menu-item>
+          <el-menu-item index="/order/order-list">{{ $t("navMenu.orderList") }}</el-menu-item>
+          <el-menu-item index="/order/order-back">{{ $t("navMenu.orderBack") }}</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>

@@ -50,6 +50,9 @@ const api = {
    */
   getSelectCategory(params) {
     return request.get(base.selectCategory, { params })
+  },
+  addGoods(params) {
+    return request.get(base.addGoods, { params })
   }
 }
 

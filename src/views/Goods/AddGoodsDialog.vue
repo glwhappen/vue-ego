@@ -7,7 +7,7 @@
     title="添加商品"
     :visible.sync="dialogVisible"
     width="70%"
-    :before-close="handleClose">
+    :before-close="resetForm">
 
     <div class="myform">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
@@ -57,7 +57,7 @@
         </el-form-item>
 
         <el-form-item label="商品描述" prop="descs">
-          <WangEditor @sendEditor="sendEditor" />
+          <WangEditor ref="wangEditor" @sendEditor="sendEditor" />
         </el-form-item>
 
       </el-form>
@@ -65,7 +65,7 @@
 
     <!--弹窗底部区域-->
     <span slot="footer" class="dialog-footer">
-      <el-button @click="dialogVisible = false">取 消</el-button>
+      <el-button @click="resetForm">取 消</el-button>
       <el-button type="primary" @click="submitForm">确 定</el-button>
     </span>
     <!--1. 内弹框 - 类目选择-->
@@ -119,6 +119,7 @@ export default {
         sellPoint: '',
         image: '',
         descs: '',
+        cid: '', // 类目id
         category: '',
         data: '', // 商品时间
         time: ''
@@ -157,8 +158,6 @@ export default {
      * 显示图片地址
      */
     sendImg(url) {
-      console.log('父', url)
-      // this.image = url
       this.imgUrl = url // 中转一步
     },
     /**
@@ -168,24 +167,25 @@ export default {
       console.log('显示', this.treeData)
       this.dialogCategoryVisible = false
       this.ruleForm.category = this.treeData.name
+      this.ruleForm.cid = this.treeData.cid
     },
     /**
      * 获取tree的数据
      */
     sendTreeData(data) {
-      // console.log('tree传过来的', data)
       this.treeData = data
-    },
-    handleClose() {
-      this.dialogVisible = false
     },
     submitForm () {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
-          alert('submit!')
           console.log('提交内容', this.ruleForm)
-          this.dialogVisible = false
-          this.$message.success('提交成功')
+          this.$api.addGoods(this.ruleForm).then(res => {
+            if(res.status === 200) {
+              this.$message.success('添加成功') // 2. 提示消息
+              this.$parent.getGoodsList(1) // 3. 更新父组件的商品列表数据
+              this.resetForm()
+            }
+          })
         } else {
           this.$message.error('数据校验失败')
           return false
@@ -193,7 +193,9 @@ export default {
       })
     },
     resetForm () {
-      this.$refs.ruleForm.resetFields()
+      this.$refs.ruleForm.resetFields() // 4. 清空表单 element自带的方法
+      this.$refs.wangEditor.editor.txt.clear() // 5. 情况wangEditor内容
+      this.dialogVisible = false // 1. 关闭弹窗
     }
   }
 }

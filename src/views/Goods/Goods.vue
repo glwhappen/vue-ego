@@ -143,7 +143,7 @@ export default {
       this.$router.push('/add-goods')
     }
   },
-  created () {
+  mounted () {
     this.getGoodsList(1)
   }
 }

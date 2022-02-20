@@ -34,7 +34,7 @@
   - 实现了上传图片的后台和前台
 - [x] [P16. 03 富文本编译器](https://www.bilibili.com/video/BV1j5411o7xH?p=16)
   - 使用了wangEditor
-- [ ] [P17. 04 商品添加-清空表单](https://www.bilibili.com/video/BV1j5411o7xH?p=17)
+- [x] [P17. 04 商品添加-清空表单](https://www.bilibili.com/video/BV1j5411o7xH?p=17)
 - [ ] [P18. 05 删除商品](https://www.bilibili.com/video/BV1j5411o7xH?p=18)
 - [ ] [P19. 06 编辑商品](https://www.bilibili.com/video/BV1j5411o7xH?p=19)
 - [ ] [P20. 01 Vue-i8n国际化](https://www.bilibili.com/video/BV1j5411o7xH?p=20)

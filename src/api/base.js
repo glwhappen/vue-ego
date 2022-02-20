@@ -10,6 +10,7 @@ const base = {
   search: '/api/search',
   selectCategory: '/api/backend/itemCategory/selectItemCategoryByParentId',
   uploadUrl: 'api/upload', // 图片上传post请求
+  addGoods: 'api/backend/item/insertTbItem', // 添加商品
 }
 
 export default base

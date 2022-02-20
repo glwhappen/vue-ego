@@ -54,4 +54,48 @@ router.get('/search', (req, res) => {
   })
 })
 
+/**
+ * 类目选择
+ * 接口说明：接口不同的参数cid 返回不同的类目数据 后台接受变量：id
+ */
+router.get('/backend/itemCategory/selectItemCategoryByParentId', (req, res) => {
+  const id = req.query.id || 1
+  const sql = 'select * from category where id=?'
+  var arr = [id]
+  sqlFn(sql, arr, result => {
+    if (result.length > 0) {
+      res.send({
+        status: 200,
+        result
+      })
+    } else {
+      res.send({
+        status: 500,
+        msg: '暂无数据'
+      })
+    }
+  })
+})
+
+/**
+ * 类目结构数据获取
+ */
+router.get('/category/data', (req, res) => {
+  var cid = req.query.cid
+  var sql = 'select * from params where itemCatId=?'
+  sqlFn(sql, [cid], result => {
+    if (result.length > 0) {
+      res.send({
+        status: 200,
+        result
+      })
+    } else {
+      res.send({
+        status: 500,
+        msg: '暂无数据'
+      })
+    }
+  })
+})
+
 module.exports = router

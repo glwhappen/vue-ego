@@ -14,6 +14,7 @@
 
         <el-form-item label="类目选择" prop="category">
           <el-button type="primary" @click="dialogCategoryVisible = true">类目选择</el-button>
+          <span class="category">{{ ruleForm.category }}</span>
         </el-form-item>
 
         <el-form-item label="商品名称" prop="title">
@@ -72,11 +73,11 @@
       title="类目选择"
       :visible.sync="dialogCategoryVisible"
       append-to-body>
-      <CategoryTree/>
+      <CategoryTree @sendTreeData="sendTreeData" />
       <!--弹窗底部区域-->
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogCategoryVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogCategoryVisible = false">确 定</el-button>
+        <el-button type="primary" @click="showTreeData">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -93,6 +94,7 @@ export default {
     return {
       dialogVisible: false,
       dialogCategoryVisible: false,
+      treeData: {}, // 接受tree的数据
       ruleForm: {
         title: '', // 商品名称
         price: 0, // 商品价格
@@ -119,6 +121,21 @@ export default {
     }
   },
   methods: {
+    /**
+     * 显示categoryTree的数据
+     */
+    showTreeData() {
+      console.log('显示', this.treeData)
+      this.dialogCategoryVisible = false
+      this.ruleForm.category = this.treeData.name
+    },
+    /**
+     * 获取tree的数据
+     */
+    sendTreeData(data) {
+      // console.log('tree传过来的', data)
+      this.treeData = data
+    },
     handleClose() {
       this.dialogVisible = false
     },
@@ -142,5 +159,8 @@ export default {
 <style scoped>
 .line {
   text-align: center;
+}
+.category{
+  margin-left: 10px;
 }
 </style>

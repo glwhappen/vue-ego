@@ -43,6 +43,13 @@ const api = {
     return request.get(base.search, {
       params
     })
+  },
+  /**
+   * 类目选择
+   * @returns {Promise<AxiosResponse<any>>}
+   */
+  getSelectCategory(params) {
+    return request.get(base.selectCategory, { params })
   }
 }
 

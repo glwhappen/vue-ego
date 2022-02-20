@@ -25,7 +25,9 @@
   - 新增了一个添加商品的页面-dialog方法实现
 - [x] [P11. 04 商品-分页功能bug](https://www.bilibili.com/video/BV1j5411o7xH?p=11)
 - [x] [P12. 05 类目选择](https://www.bilibili.com/video/BV1j5411o7xH?p=12)
-- [ ] [P13. 06 类目选择实现](https://www.bilibili.com/video/BV1j5411o7xH?p=13)
+  - 实现静态页面
+- [x] [P13. 06 类目选择实现](https://www.bilibili.com/video/BV1j5411o7xH?p=13)
+  - 实现完整的动态数据获取
 - [ ] [P14. 01 项目补充说明](https://www.bilibili.com/video/BV1j5411o7xH?p=14)
 - [ ] [P15. 02 上传图片实现](https://www.bilibili.com/video/BV1j5411o7xH?p=15)
 - [ ] [P16. 03 富文本编译器](https://www.bilibili.com/video/BV1j5411o7xH?p=16)

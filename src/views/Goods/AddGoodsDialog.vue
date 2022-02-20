@@ -48,7 +48,12 @@
         </el-form-item>
 
         <el-form-item label="商品图片" prop="image">
-          <el-button type="primary">上传图片</el-button>
+          <el-button type="primary" @click="dialogUploadImageVisible = true">上传图片</el-button><br>
+          <el-image v-if="ruleForm.image"
+            style="width: 100px; height: 100px"
+            :src="ruleForm.image"
+            fit="contain">
+          </el-image>
         </el-form-item>
 
         <el-form-item label="商品描述" prop="descs">
@@ -77,24 +82,39 @@
       <!--弹窗底部区域-->
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogCategoryVisible = false">取 消</el-button>
-        <el-button type="primary" @click="showTreeData">确 定</el-button>
+        <el-button type="primary" @click="dialogUploadImageVisible = false">确 定</el-button>
       </span>
     </el-dialog>
-
+    <!--2. 内弹窗 - 上传图片-->
+    <el-dialog
+      width="50%"
+      title="上传图片"
+      :visible.sync="dialogUploadImageVisible"
+      append-to-body>
+      <UploadImage @sendImg="sendImg" />
+      <!--弹窗底部区域-->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogUploadImageVisible = false">取 消</el-button>
+        <el-button type="primary" @click="showImage">确 定</el-button>
+      </span>
+    </el-dialog>
   </el-dialog>
 </template>
 
 <script>
 import CategoryTree from '@/views/Goods/CategoryTree'
+import UploadImage from '@/views/Goods/UploadImage'
 export default {
   name: 'AddGoodsDialog',
-  components: { CategoryTree },
+  components: { UploadImage, CategoryTree },
   // props: ['dialogVisible'],
   data() {
     return {
       dialogVisible: false,
       dialogCategoryVisible: false,
+      dialogUploadImageVisible: false,
       treeData: {}, // 接受tree的数据
+      imgUrl: '',
       ruleForm: {
         title: '', // 商品名称
         price: 0, // 商品价格
@@ -121,6 +141,21 @@ export default {
     }
   },
   methods: {
+    /**
+     * 显示图片
+     */
+    showImage() {
+      this.dialogUploadImageVisible = false
+      this.ruleForm.image = this.imgUrl
+    },
+    /**
+     * 显示图片地址
+     */
+    sendImg(url) {
+      console.log('父', url)
+      // this.image = url
+      this.imgUrl = url // 中转一步
+    },
     /**
      * 显示categoryTree的数据
      */

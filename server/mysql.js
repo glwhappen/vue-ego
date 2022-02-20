@@ -2,11 +2,12 @@
 const mysql = require('mysql')
 
 // 创建数据库连接
-const client = mysql.createConnection({
+const client = mysql.createPool({
   host: 'api.glwsq.cn', // 数据域名 地址
   user: 'root', // 数据名称
   password: '123456', // 数据库密码 xampp集成
   database: 'ego',
+  useConnectionPooling: true, // 防止一个错误 Cannot enqueue Query after fatal error.
   port: '3306'
 })
 
@@ -20,7 +21,7 @@ const client = mysql.createConnection({
 function sqlFun (sql, arr, callback) {
   client.query(sql, arr, function (error, result) {
     if (error) {
-      console.log('数据库语句错误')
+      console.log('数据库语句错误', error)
       return
     }
     callback(result)

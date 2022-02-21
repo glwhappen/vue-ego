@@ -41,7 +41,9 @@
   - 如果跟着视频来，必须这样安装`npm install vue-i18n@8.26.7`要不会报错
 - [x] [P21. 02 Element-国际化](https://www.bilibili.com/video/BV1j5411o7xH?p=21)
   - 视频里的方法最后一步报错，参考了这个人的教程就可以了 [vue+element+vue-i18n@8.x 国际化中英文切换](https://blog.csdn.net/songhsia/article/details/104800966)
-- [ ] [P22. 03 登录布局](https://www.bilibili.com/video/BV1j5411o7xH?p=22)
+- [x] [P22. 03 登录布局](https://www.bilibili.com/video/BV1j5411o7xH?p=22)
+  - 实现了登录页面
+  - 我自己也做了很多优化，非常好看
 - [ ] [P23. 04 登录-功能实现-数据持久化-vuex](https://www.bilibili.com/video/BV1j5411o7xH?p=23)
 - [ ] [P24. 05 Echarts使用](https://www.bilibili.com/video/BV1j5411o7xH?p=24)
 - [ ] [P25. 06 Mock.js模拟数据](https://www.bilibili.com/video/BV1j5411o7xH?p=25)

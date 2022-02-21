@@ -19,6 +19,7 @@ time, mark, audio, video{
     margin: 0;
     padding: 0;
     border: 0;
+    box-sizing: border-box; /* 告诉浏览器：你想要设置的边框和内边距的值是包含在 width 内,方便计算 */
     font-size: 100%;
     font: inherit;
     font-weight: normal;

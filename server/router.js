@@ -12,6 +12,9 @@ const multer = require('multer')
 const jwt = require('jsonwebtoken')
 const config = require('./secent')
 
+// 导入mockjs
+const Mock = require('mockjs')
+
 // 登录接口
 /**
  * 语法：
@@ -336,6 +339,33 @@ router.get('/backend/item/updateTbItem', (req, res) => {
       })
     }
   })
+})
+/**
+ * 随机获取mock的数据
+ */
+router.get('/mock', (req, res) => {
+  // 使用mock生成数据
+  const data = Mock.mock({
+    info: '我是一个很单纯的对象',
+    'string|1-10': '⭐',
+    color: '@color',
+    name: '@cname',
+    url: '@url',
+    city: '@city(true)',
+    // 生成list字段，数组类型
+    'list|6': [
+      {
+        'id|+1': 1001,
+        'sex|1': true,
+        'city|1': {
+          310000: '上海市',
+          320000: '江苏省',
+          330000: '浙江省',
+          340000: '安徽省'
+        }
+      }]
+  })
+  res.send(data)
 })
 
 module.exports = router

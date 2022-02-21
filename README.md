@@ -53,7 +53,10 @@
     1. 导入echarts在组件中使用
     2. 导入全局 挂载在原型上 全局使用 【推荐】
     3. 开发成vue插件
-- [ ] [P25. 06 Mock.js模拟数据](https://www.bilibili.com/video/BV1j5411o7xH?p=25)
+- [x] [P25. 06 Mock.js模拟数据](https://www.bilibili.com/video/BV1j5411o7xH?p=25)
+  - 安装：`npm install mockjs`
+  - 前端引用 import Mock from 'mockjs'
+  - 语法 Mock.mock()
 - [ ] [P26. 01 规格参数列表获取](https://www.bilibili.com/video/BV1j5411o7xH?p=26)
 - [ ] [P27. 02 添加规格参数-动态表单](https://www.bilibili.com/video/BV1j5411o7xH?p=27)
 - [ ] [P28. 03 规格参数配置](https://www.bilibili.com/video/BV1j5411o7xH?p=28)

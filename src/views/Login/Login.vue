@@ -16,6 +16,7 @@
           <el-button @click="resetForm('ruleForm')">重置</el-button>
         </div>
       </el-form>
+      <span class="message">用户名：admin 密码：123</span>
     </div>
   </div>
 </template>
@@ -28,8 +29,8 @@ export default {
   data() {
     return {
       ruleForm: {
-        password: '',
-        username: ''
+        password: '123',
+        username: 'admin'
       },
       rules: {
         username: [
@@ -114,6 +115,10 @@ export default {
     .buttons {
       display: flex;
       justify-content: center;
+    }
+    .message {
+      color: #999;
+      font-size: 10px;
     }
   }
 }

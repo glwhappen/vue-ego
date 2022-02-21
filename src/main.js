@@ -9,6 +9,10 @@ import api from './api/index'
 // 导入语言
 import i18n from './lang/index'
 
+// 导入echarts
+import * as echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 Vue.prototype.$api = api
 
 Vue.config.productionTip = false

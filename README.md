@@ -47,7 +47,12 @@
 - [x] [P23. 04 登录-功能实现-数据持久化-vuex](https://www.bilibili.com/video/BV1j5411o7xH?p=23)
   - 后台安装 jsonwebtoken `npm install jsonwebtoken`
   - 前台安装 jwt-decode 解析jsonwebtoken中的数据 `npm install jwt-decode`
-- [ ] [P24. 05 Echarts使用](https://www.bilibili.com/video/BV1j5411o7xH?p=24)
+- [x] [P24. 05 Echarts使用](https://www.bilibili.com/video/BV1j5411o7xH?p=24)
+  - 安装：`npm install echarts`
+  - 使用方式
+    1. 导入echarts在组件中使用
+    2. 导入全局 挂载在原型上 全局使用 【推荐】
+    3. 开发成vue插件
 - [ ] [P25. 06 Mock.js模拟数据](https://www.bilibili.com/video/BV1j5411o7xH?p=25)
 - [ ] [P26. 01 规格参数列表获取](https://www.bilibili.com/video/BV1j5411o7xH?p=26)
 - [ ] [P27. 02 添加规格参数-动态表单](https://www.bilibili.com/video/BV1j5411o7xH?p=27)

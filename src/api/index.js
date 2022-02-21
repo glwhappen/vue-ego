@@ -8,7 +8,7 @@ import { Message } from 'element-ui'
 const qs = require('querystring')
 
 const request = axios.create({
-  baseURL: base.baseURL,
+  // baseURL: base.baseURL,
   timeout: 5000
 })
 
@@ -69,6 +69,14 @@ const api = {
    */
   login(params) {
     return request.post(base.login, qs.stringify(params))
+  },
+  /**
+   * 规格参数列表
+   * @param params 参数 page
+   * @returns {Promise<AxiosResponse<any>>}
+   */
+  getParams(params) {
+    return request.get(base.params, { params })
   }
 }
 

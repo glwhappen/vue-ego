@@ -57,7 +57,9 @@
   - 安装：`npm install mockjs`
   - 前端引用 import Mock from 'mockjs'
   - 语法 Mock.mock()
-- [ ] [P26. 01 规格参数列表获取](https://www.bilibili.com/video/BV1j5411o7xH?p=26)
+- [x] [P26. 01 规格参数列表获取](https://www.bilibili.com/video/BV1j5411o7xH?p=26)
+  - 创建页面
+  - 获取后台数据
 - [ ] [P27. 02 添加规格参数-动态表单](https://www.bilibili.com/video/BV1j5411o7xH?p=27)
 - [ ] [P28. 03 规格参数配置](https://www.bilibili.com/video/BV1j5411o7xH?p=28)
 - [ ] [P29. 01 Vue-pdf打印合同](https://www.bilibili.com/video/BV1j5411o7xH?p=29)

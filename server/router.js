@@ -368,4 +368,144 @@ router.get('/mock', (req, res) => {
   res.send(data)
 })
 
+/**
+ * 规格参数列表  参数 page
+ */
+router.get('/backend/itemParam/selectItemParamAll', (req, res) => {
+  const page = req.query.page || 1
+  const sqlLen = 'select * from params where id'
+  sqlFn(sqlLen, null, data => {
+    const len = data.length
+    const sql = 'select * from params order by id desc limit 8 offset ' + (page - 1) * 8
+    sqlFn(sql, null, result => {
+      if (result.length > 0) {
+        res.send({
+          status: 200,
+          data: result,
+          pageSize: 8,
+          total: len
+        })
+      } else {
+        res.send({
+          status: 500,
+          msg: '暂无数据'
+        })
+      }
+    })
+  })
+})
+
+/**
+ * 规格参数  模糊查询  参数：search
+ */
+router.get('/params/search', (req, res) => {
+  var search = req.query.search
+  const sql = "select * from params where concat(`paramData`) like '%" + search + "%'"
+  sqlFn(sql, [search], result => {
+    if (result.length > 0) {
+      res.send({
+        status: 200,
+        result
+      })
+    } else {
+      res.send({
+        status: 500,
+        msg: '暂无数据'
+      })
+    }
+  })
+})
+
+/**
+ * 规格参数 添加
+ * 参数：itemCatId,content,specsName
+ */
+router.get('/backend/itemParam/insertItemParam', (req, res) => {
+  var itemCatId = req.query.itemCatId
+  var paramsContent = req.query.content
+  var specsName = req.query.specsName
+  // console.log(itemCatId, paramsContent,specsName);
+  var sql = 'insert into params values (null,?,?,?)'
+  sqlFn(sql, [itemCatId, paramsContent, specsName], result => {
+    if (result.affectedRows > 0) {
+      res.send({
+        status: 200,
+        msg: '添加成功'
+      })
+    } else {
+      res.send({
+        status: 500,
+        msg: '添加失败'
+      })
+    }
+  })
+})
+
+/**
+ * 修改规格参数 cid content id  specsName
+ */
+router.get('/update/category', (req, res) => {
+  var cid = req.query.cid
+  var content = req.query.content
+  var id = req.query.id
+  var specsName = req.query.specsName
+  var sql = 'update params set paramData=? ,itemCatId=?,specsName=? where id=?'
+  sqlFn(sql, [content, cid, specsName, id], result => {
+    if (result.affectedRows > 0) {
+      res.send({
+        status: 200,
+        msg: '修改成功'
+      })
+    } else {
+      res.send({
+        status: 500,
+        msg: '修改失败'
+      })
+    }
+  })
+})
+
+/**
+ * 规格参数删除
+ */
+router.get('/params/delete', (req, res) => {
+  var id = req.query.id
+  const sql = 'delete from params where id=?'
+  const arr = [id]
+  sqlFn(sql, arr, result => {
+    if (result.affectedRows > 0) {
+      res.send({
+        status: 200,
+        msg: '删除成功'
+      })
+    } else {
+      res.send({
+        status: 500,
+        msg: '删除失败'
+      })
+    }
+  })
+})
+
+/**
+ * 规格参数类目结构数据获取 cid
+ */
+router.get('/category/data', (req, res) => {
+  var cid = req.query.cid
+  var sql = 'select * from params where itemCatId=?'
+  sqlFn(sql, [cid], result => {
+    if (result.length > 0) {
+      res.send({
+        status: 200,
+        result
+      })
+    } else {
+      res.send({
+        status: 500,
+        msg: '暂无数据'
+      })
+    }
+  })
+})
+
 module.exports = router

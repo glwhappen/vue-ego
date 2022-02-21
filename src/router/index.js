@@ -10,6 +10,7 @@ import Order from '../views/Order/Order'
 import OrderList from '../views/Order/OrderList/OrderList'
 import OrderBack from '../views/Order/OrderBack/OrderBack'
 import AddGoods from '../views/Goods/AddGoods'
+import Specifications from '@/views/Params/ParamsInfo/Specifications'
 
 // 获取vuex数据
 import store from '../store/index'
@@ -48,7 +49,15 @@ const routes = [
       {
         path: '/params',
         name: 'Params',
-        component: Params
+        component: Params,
+        redirect: '/params/specifications',
+        children: [
+          {
+            path: 'specifications',
+            name: 'Specifications',
+            component: Specifications
+          }
+        ]
       },
       {
         path: '/order',

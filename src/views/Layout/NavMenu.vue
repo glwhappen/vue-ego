@@ -20,10 +20,17 @@
         <i class="el-icon-document"></i>
         <span slot="title">{{ $t("navMenu.goods") }}</span>
       </el-menu-item>
-      <el-menu-item index="/params">
-        <i class="el-icon-setting"></i>
-        <span slot="title">{{ $t("navMenu.params") }}</span>
-      </el-menu-item>
+<!--      <el-menu-item index="/params">-->
+<!--        <i class="el-icon-setting"></i>-->
+<!--        <span slot="title">{{ $t("navMenu.params") }}</span>-->
+<!--      </el-menu-item>-->
+      <el-submenu index="/params">
+        <template slot="title">
+          <i class="el-icon-setting"></i>
+          <span>{{ $t("navMenu.params") }}</span>
+        </template>
+        <el-menu-item index="/params/specifications">规格与包装</el-menu-item>
+      </el-submenu>
       <el-menu-item index="/advert">
         <i class="el-icon-setting"></i>
         <span slot="title">{{ $t("navMenu.advert") }}</span>

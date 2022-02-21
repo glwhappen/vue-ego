@@ -15,9 +15,10 @@
           </el-dropdown-menu>
         </el-dropdown>
         <div class="user">
-          欢迎xxx
+          欢迎:{{ userinfo.username }}
         </div>
-        <span>退出</span>
+        <i class="iconfont icon-tuichu" @click="logout"></i>
+<!--        <span>退出</span>-->
       </div>
     </div>
     <!--内容区域 路由出口-->
@@ -29,10 +30,24 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Content',
   props: ['isCollapse'],
+  computed: {
+    ...mapState('loginModule', ['userinfo'])
+  },
   methods: {
+    ...mapMutations('loginModule', ['clearUser']),
+    // 退出登录
+    logout() {
+      // 清空vuex
+      this.clearUser()
+      // 清空本地数据
+      localStorage.clear('userinfo')
+      // 返回登录
+      this.$router.push('/login')
+    },
     /**
      * 获取点击的语言是什么
      * @param command 传入的语言 zh|en

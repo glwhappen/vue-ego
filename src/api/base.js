@@ -13,6 +13,7 @@ const base = {
   addGoods: 'api/backend/item/insertTbItem', // 添加商品
   deleteGoods: 'api/backend/item/deleteItemById', // 删除商品
   editGoods: 'api/backend/item/updateTbItem', // 编辑商品
+  login: 'api/login', // 登录
 }
 
 export default base

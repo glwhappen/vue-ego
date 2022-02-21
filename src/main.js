@@ -13,6 +13,13 @@ Vue.prototype.$api = api
 
 Vue.config.productionTip = false
 
+// 持久化
+let user = localStorage.getItem('userinfo')
+if(user) {
+  user = JSON.parse(user)
+  store.commit('loginModule/setUser', user)
+}
+
 new Vue({
   router,
   store,

@@ -4,6 +4,8 @@
 import axios from 'axios'
 import base from './base'
 import { Message } from 'element-ui'
+// 处理body传参
+const qs = require('querystring')
 
 const request = axios.create({
   baseURL: base.baseURL,
@@ -59,6 +61,14 @@ const api = {
   },
   editGoods(params) {
     return request.get(base.editGoods, { params })
+  },
+  /**
+   * 登录
+   * @param params {username: '', password:''}
+   * @returns {Promise<AxiosResponse<any>>}
+   */
+  login(params) {
+    return request.post(base.login, qs.stringify(params))
   }
 }
 

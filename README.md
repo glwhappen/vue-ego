@@ -44,7 +44,9 @@
 - [x] [P22. 03 登录布局](https://www.bilibili.com/video/BV1j5411o7xH?p=22)
   - 实现了登录页面
   - 我自己也做了很多优化，非常好看
-- [ ] [P23. 04 登录-功能实现-数据持久化-vuex](https://www.bilibili.com/video/BV1j5411o7xH?p=23)
+- [x] [P23. 04 登录-功能实现-数据持久化-vuex](https://www.bilibili.com/video/BV1j5411o7xH?p=23)
+  - 后台安装 jsonwebtoken `npm install jsonwebtoken`
+  - 前台安装 jwt-decode 解析jsonwebtoken中的数据 `npm install jwt-decode`
 - [ ] [P24. 05 Echarts使用](https://www.bilibili.com/video/BV1j5411o7xH?p=24)
 - [ ] [P25. 06 Mock.js模拟数据](https://www.bilibili.com/video/BV1j5411o7xH?p=25)
 - [ ] [P26. 01 规格参数列表获取](https://www.bilibili.com/video/BV1j5411o7xH?p=26)

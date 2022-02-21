@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import jwt from 'jwt-decode'
+import { mapMutations } from 'vuex'
 export default {
   name: 'Login',
   data() {
@@ -42,11 +44,28 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('loginModule', ['setUser']),
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // alert('submit!', )
           console.log(this.ruleForm)
+          this.$api.login(this.ruleForm).then(res => {
+            if(res.status === 200) {
+              const token = res.data
+              const payload = jwt(token)
+              const { username } = payload
+              // 存vuex
+              this.setUser({ username, token })
+              // 存本地
+              localStorage.setItem('userinfo', JSON.stringify({ username, token }))
+              // 跳转
+              this.$router.push('/')
+              this.$message.success('登录成功, 欢迎' + username)
+            } else {
+              this.$message.error('用户名或密码错误')
+            }
+          })
         } else {
           console.log('error submit!!')
           return false

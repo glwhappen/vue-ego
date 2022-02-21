@@ -8,6 +8,73 @@ const sqlFn = require('./mysql')
 const fs = require('fs')
 const multer = require('multer')
 
+// 导入jsonwebtoken模块
+const jwt = require('jsonwebtoken')
+const config = require('./secent')
+
+// 登录接口
+/**
+ * 语法：
+ * 如60，"2 days"，"10h"，"7d"，Expiration time，过期时间
+ *  jwt.sign({},'秘钥','过期时间,{expiresIn:20*1,'1day''1h'}')
+ */
+
+/**
+ * 登录 login
+ * 接受的字段：username,password
+ * 测试：postman
+ */
+router.post('/login', (req, res) => {
+  const { username, password } = req.body
+  console.log(req.body)
+  // 请求数据库
+  const sql = 'select * from userinfo where username=? and password=?'
+  const arr = [username, password]
+  sqlFn(sql, arr, result => {
+    if (result.length > 0) {
+      const token = jwt.sign({
+        username: result[0].username,
+        id: result[0].id
+      }, config.jwtSecert, {
+        expiresIn: 20 * 1
+      })
+      res.send({
+        status: 200,
+        data: token
+      })
+    } else {
+      res.send({
+        status: 404,
+        msg: '信息错误'
+      })
+    }
+  })
+})
+
+/**
+ * 注册接口 /register
+ */
+router.post('/register', (req, res) => {
+  const {
+    username,
+    password
+  } = req.body
+  const sql = 'insert into userinfo values(null,?,?)'
+  const arr = [username, password]
+  sqlFn(sql, arr, (result) => {
+    if (result.affectedRows > 0) {
+      res.send({
+        msg: '注册成功',
+        status: 200
+      })
+    } else {
+      res.status(401).json({
+        errors: '用户名密码错误'
+      })
+    }
+  })
+})
+
 /**
  * 商品列表：获取分页 {total:'',arr:[{},{},{}],pagesize:8,}
  * 参数：page 页码

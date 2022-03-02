@@ -64,6 +64,21 @@ export default {
 </script>
 
 <style scoped lang="less">
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    .header-right {
+      float: right;
+      padding-right: 20px;
+      display: flex;
+      font-size: 15px;
+    }
+  }
+}
+
 .content {
   display: flex;
   flex-direction: column;

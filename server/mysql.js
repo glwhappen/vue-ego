@@ -2,13 +2,13 @@
 const mysql = require('mysql')
 
 // 创建数据库连接
-const client = mysql.createPool({
+const client = mysql.createConnection({
   host: 'api.glwsq.cn', // 数据域名 地址
-  user: 'root', // 数据名称
-  password: '123456', // 数据库密码 xampp集成
-  database: 'ego',
+  user: 'ego', // 用户名
+  password: 'ego', // 数据库密码
+  database: 'ego', // 连接数据库
   useConnectionPooling: true, // 防止一个错误 Cannot enqueue Query after fatal error.
-  port: '3306'
+  port: '3316'
 })
 
 // 封装数据库操作语句 sql语句 参数数组arr  callback成功函数结果

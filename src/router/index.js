@@ -14,6 +14,11 @@ import Specifications from '@/views/Params/ParamsInfo/Specifications'
 
 // 获取vuex数据
 import store from '../store/index'
+import EchartsTest from '@/views/Echarts/EchartsTest'
+import Echarts from '@/views/Echarts/Echarts'
+import EchartsLine from '@/views/Echarts/EchartsLine'
+import EchartsLineSub from '@/views/Echarts/EchartsLineSub'
+import EchartsLineMaxInput from '@/views/Echarts/EchartsLineMaxInput'
 
 Vue.use(VueRouter)
 
@@ -23,7 +28,7 @@ const routes = [
     component: Layout,
     // 路由元信息
     meta: {
-      isLogin: true // 是否需要登录
+      isLogin: false // 是否需要登录
     },
     children: [
       {
@@ -35,6 +40,34 @@ const routes = [
         path: '/goods',
         name: 'Goods',
         component: Goods
+      },
+      {
+        path: '/echarts',
+        name: 'Echarts',
+        component: Echarts,
+        redirect: '/echarts/test',
+        children: [
+          {
+            path: 'test',
+            name: 'EchartsTest',
+            component: EchartsTest,
+          },
+          {
+            path: 'echartsline-maxinput',
+            name: 'EchartsLineMaxInput',
+            component: EchartsLineMaxInput,
+          },
+          {
+            path: 'echarts-line',
+            name: 'EchartsLine',
+            component: EchartsLine,
+          },
+          {
+            path: 'echartsline-sub',
+            name: 'EchartsLineSub',
+            component: EchartsLineSub,
+          },
+        ]
       },
       {
         path: '/add-goods',

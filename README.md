@@ -1,4 +1,5 @@
 > 完整记录：https://www.glwsq.cn/post/note-vue-element/
+> GitHub：https://github.com/glwhappen/vue-ego
 
 ## 学习记录
 - [x] [P1. 01 项目介绍](https://www.bilibili.com/video/BV1j5411o7xH?p=1)
